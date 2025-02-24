@@ -1,5 +1,6 @@
 import ButtonCP from "./ButtonCP"
 import DynamicUse from "./DynamicUse"
+import Random from "./ReandomNB"
 
 /**
  * Below is functional component.
@@ -10,6 +11,11 @@ function App(){
   return <div>
     <h1>Hello This is React App file changes.</h1>
     <DynamicUse></DynamicUse>
+    <Random></Random>
+    <Random></Random>
+    <Random></Random>
+    <Random></Random>
+    <Random></Random>
     <ButtonCP></ButtonCP>
     </div>
 }
