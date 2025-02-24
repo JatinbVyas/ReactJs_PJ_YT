@@ -1,4 +1,5 @@
 import ButtonCP from "./ButtonCP"
+import DynamicUse from "./DynamicUse"
 
 /**
  * Below is functional component.
@@ -8,6 +9,7 @@ import ButtonCP from "./ButtonCP"
 function App(){
   return <div>
     <h1>Hello This is React App file changes.</h1>
+    <DynamicUse></DynamicUse>
     <ButtonCP></ButtonCP>
     </div>
 }
