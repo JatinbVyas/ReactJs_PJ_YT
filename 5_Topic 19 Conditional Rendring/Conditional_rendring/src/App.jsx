@@ -1,6 +1,6 @@
 function App() {
-  //let foodItems = ["Dal", "Roti", "Green Vegetables", "Milk", "Salad"];
-  let foodItems = [];
+  let foodItems = ["Dal", "Roti", "Green Vegetables", "Milk", "Salad"];
+  //let foodItems = [];
   let emptyMessage = foodItems.length === 0 ? <h1>I'm hungry.</h1> : null;
 
   /**
@@ -18,7 +18,7 @@ function App() {
      */
     <>
       <h1>Healthy Foods</h1>
-      {emptyMessage}
+      {foodItems.length === 0 && <h1>I'm hungry.</h1>}
       <ul className="list-group">
         {foodItems.map((item) => (
           <li key={item} className="list-group-item">
