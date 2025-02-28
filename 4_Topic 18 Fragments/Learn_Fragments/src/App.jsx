@@ -1,20 +1,19 @@
-import React from "react";
-
 function App() {
   return (
     /**
      * <React.Fragment></React.Fragment> tag is used to define that inside that tag we can define our HTML code and need to extra parrent tag element like <div> or <table> or <center>
+     * Another way of React Fragment tag is used them as empty <> </>
      */
-    <React.Fragment>
+    <>
       <h1>Healthy Foods</h1>
       <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+        <li class="list-group-item">Dal</li>
+        <li class="list-group-item">Roti</li>
+        <li class="list-group-item">Green Vegetables</li>
+        <li class="list-group-item">Milk</li>
+        <li class="list-group-item">Salad</li>
       </ul>
-    </React.Fragment>
+    </>
   );
 }
 
