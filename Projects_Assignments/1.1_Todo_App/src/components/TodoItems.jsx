@@ -2,11 +2,11 @@ function TodoItems(props) {
   let { todoItemName } = props;
   let { todoItemDate } = props;
   return (
-    <div class="container">
-      <div class="row todo-row">
-        <div class="col-6">{todoItemName}</div>
-        <div class="col-4">{todoItemDate}</div>
-        <div class="col-2">
+    <div className="container">
+      <div className="row todo-row">
+        <div className="col-6">{todoItemName}</div>
+        <div className="col-4">{todoItemDate}</div>
+        <div className="col-2">
           <button type="button" className="btn btn-danger todo-button">
             Delete
           </button>
