@@ -1,6 +1,6 @@
-function TodoItems1() {
-  let todoItemName = "Buy Milk";
-  let todoItemDate = "4/12/2025";
+function TodoItems(props) {
+  let { todoItemName } = props;
+  let { todoItemDate } = props;
   return (
     <div class="container">
       <div class="row todo-row">
@@ -16,4 +16,4 @@ function TodoItems1() {
   );
 }
 
-export default TodoItems1;
+export default TodoItems;
