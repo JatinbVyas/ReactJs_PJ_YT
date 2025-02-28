@@ -2,7 +2,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import FoodItems from "./components/FoodItems";
 
 function App() {
-  let foodItems = ["Dal Makhani", "Roti", "Green Vegetables", "Milk", "Salad"];
+  let foodItems = [];
 
   /**
    * Here foodItems define only ones in App.jsx then it pass to both child component ErrorMessage and FoodItems.
