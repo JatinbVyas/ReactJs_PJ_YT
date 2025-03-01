@@ -1,0 +1,11 @@
+.items-container{
+  text-align: left;
+}
+
+.todo-row{
+  margin: 10px 5px;
+}
+
+.todo-button{
+  min-width: 80px;
+}
