@@ -6,3 +6,7 @@
 .food-item-color{
   color: white;
 }
+
+.button {
+  float: right;
+}

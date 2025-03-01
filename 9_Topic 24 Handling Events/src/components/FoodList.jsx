@@ -1,18 +1,22 @@
-/**
- * This is he concept of css modules.
- * You can defile each component wise seprate css using below method
- * 1. First you need to define CSS file with same component name, e.g FoodList.module.css
- * 2. Then need to import the CSS file using below syntax. e.g. import foodlistcss from "./FoodList.module.css";
- * 3. Third now you can access class name from import object e.g. foodlistcss['food-item-bg']
- * Using this way each component have their seprte css file and if someone gave same class name then conflict will not occure.
- */
 import foodlistcss from "./FoodList.module.css";
 
+/**
+ * Here is the concept of adding event to element.
+ * Here we added onClick event to button, event should be in camelCase.
+ * you can see below this is how we given onClick event to button.
+ * and return one simple arrow function and define one alert. so once button is clicked alter box will popup.
+ */
 const FoodList = (props) => {
   let { foodItem } = props;
   return (
     <li className={`${foodlistcss["food-item-bg"]} list-group-item`}>
       <span className={`${foodlistcss["food-item-color"]}`}>{foodItem}</span>
+      <button
+        className={`${foodlistcss.button} btn btn-success`}
+        onClick={() => alert("Buy button clicked.")}
+      >
+        Buy
+      </button>
     </li>
   );
 };
