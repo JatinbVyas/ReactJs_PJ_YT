@@ -1,14 +1,18 @@
 import styles from "./FoodInput.module.css";
-const FoodInput = () => {
-  const onChangeEventCalled = (event) => {
-    console.log(event.target.value);
-  };
+/**
+ * Here now we seen that in props this child received function call object.
+ * means from parent App.jsx received handleonChangeEvent and this needs to be handle anywhere as per requirement.
+ * Here we handle it onChange.
+ * So when user type anything on input text this event will get called.
+ * here we received it in props object but we directly destructured it.
+ */
+const FoodInput = ({ handleonChangeEvent }) => {
   return (
     <input
       type="text"
       placeholder="Enter your food item."
       className={styles.foodInput}
-      onChange={onChangeEventCalled}
+      onChange={handleonChangeEvent}
     ></input>
   );
 };

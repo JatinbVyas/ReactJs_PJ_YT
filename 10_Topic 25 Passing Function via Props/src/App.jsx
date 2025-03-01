@@ -5,6 +5,17 @@ import FoodItems from "./components/FoodItems";
 
 function App() {
   let foodItems = ["Dal Makhani", "Roti", "Green Vegetables", "Milk", "Salad"];
+
+  /**
+   * Here we seen the use of passing function as props to child.
+   * Here we passed handleonChangeEvent to chile FoodInput.
+   * and now in FoodInput we can handle it as per requirement.
+   * e.g onClick or onChange.
+   */
+  const onChangeEventCalled = (event) => {
+    console.log(event.target.value);
+  };
+
   /**
    * Learn the use of props children, here we created a component with name Container.jsx and in which we define <div> with some css to look good. and now in that Container component we passing other component and tags. Those taga and component can be catch at props.children at component side.
    */
@@ -13,7 +24,7 @@ function App() {
       <Container>
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
         <ErrorMessage listofItems={foodItems}></ErrorMessage>
-        <FoodInput></FoodInput>
+        <FoodInput handleonChangeEvent={onChangeEventCalled}></FoodInput>
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
 
