@@ -51,13 +51,11 @@ function App() {
   function deleteClicked(remmovId) {
     //console.  log("Todo id comes for delete is::", id["todoId"]);
     let deletetodoId = remmovId["todoId"];
-    let updatedtodoItems = [...todolist];
-    console.log(updatedtodoItems);
-
-    updatedtodoItems = updatedtodoItems.slice(
-      updatedtodoItems.map((arrayItems) => arrayItems[0]["id"] === deletetodoId)
+    let updatedtodoItems = todolist.filter(
+      (items) => items[0]["id"] !== deletetodoId
     );
-    console.log(updatedtodoItems);
+
+    settodolist(updatedtodoItems);
   }
   return (
     <center className="todo-container">
