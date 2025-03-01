@@ -1,23 +1,20 @@
 import foodlistcss from "./FoodList.module.css";
 
 /**
- * Here is the concept of adding event to element.
- * Here we added onClick event to button, event should be in camelCase.
- * you can see below this is how we given onClick event to button.
- * and return one simple arrow function and define one alert. so once button is clicked alter box will popup.
+ * Here now we seen that in props this child received function call object.
+ * means from parent FoodItems received handleClickEvent and this needs to be handle anywhere as per requirement.
+ * Here we handle it onClick.
+ * So when user click on button it called function and that is defined in parent.
  */
 const FoodList = (props) => {
   let { foodItem } = props;
-  function buyButtonClicked(itemName, event) {
-    console.log(event);
-    alert(`Buy ${itemName}, please`);
-  }
+
   return (
     <li className={`${foodlistcss["food-item-bg"]} list-group-item`}>
       <span className={`${foodlistcss["food-item-color"]}`}>{foodItem}</span>
       <button
         className={`${foodlistcss.button} btn btn-success`}
-        onClick={(event) => buyButtonClicked(foodItem, event)}
+        onClick={props.handleClickEvent}
       >
         Buy
       </button>

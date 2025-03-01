@@ -2,19 +2,24 @@ import FoodList from "./FoodList";
 
 function FoodItems(props) {
   /**
-   * Hre in props foodItems array is received. and this can be used.
-   * This N number of variables can be passed to child component.
-   * All get received in one argument just like in props.
-   * now we can destructure it and can use it.
-   * just like { listofItems } = props. it is not necessary to give name props, it can be any.
-   * Now again it pass the value/variable to child component FoodList.
-   * and same way as here in child component this variable can be used.
+   * Here we seen the use of passing function as props to child.
+   * Here we passed handleClickEvent to chile FoodList.
+   * and now in FoodList we can handle it as per requirement.
+   * e.g onClick or onChange.
    */
   let { listofItems } = props;
+  function buyButtonClicked(itemName, event) {
+    console.log(event);
+    alert(`Buy ${itemName}, please`);
+  }
   return (
     <ul className="list-group">
       {listofItems.map((item) => (
-        <FoodList key={item} foodItem={item}></FoodList>
+        <FoodList
+          key={item}
+          foodItem={item}
+          handleClickEvent={() => console.log(`${item} is clicked.`)}
+        ></FoodList>
       ))}
     </ul>
   );
