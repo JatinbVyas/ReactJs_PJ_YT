@@ -22,7 +22,9 @@ const ButtonsContainer = () => {
   return (
     <div id="buttons-container" className={styles.calciButton}>
       {buttonsNames.map((button) => (
-        <button className={styles.button}>{button}</button>
+        <button key={button} className={styles.button}>
+          {button}
+        </button>
       ))}
     </div>
   );
