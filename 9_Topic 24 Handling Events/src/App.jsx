@@ -1,5 +1,6 @@
 import Container from "./components/Container";
 import ErrorMessage from "./components/ErrorMessage";
+import FoodInput from "./components/FoodInput";
 import FoodItems from "./components/FoodItems";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Container>
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
         <ErrorMessage listofItems={foodItems}></ErrorMessage>
+        <FoodInput></FoodInput>
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
 
