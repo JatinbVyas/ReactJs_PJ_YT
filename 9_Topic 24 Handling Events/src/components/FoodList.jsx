@@ -8,7 +8,8 @@ import foodlistcss from "./FoodList.module.css";
  */
 const FoodList = (props) => {
   let { foodItem } = props;
-  function buyButtonClicked(itemName) {
+  function buyButtonClicked(itemName, event) {
+    console.log(event);
     alert(`Buy ${itemName}, please`);
   }
   return (
@@ -16,7 +17,7 @@ const FoodList = (props) => {
       <span className={`${foodlistcss["food-item-color"]}`}>{foodItem}</span>
       <button
         className={`${foodlistcss.button} btn btn-success`}
-        onClick={() => buyButtonClicked(foodItem)}
+        onClick={(event) => buyButtonClicked(foodItem, event)}
       >
         Buy
       </button>
