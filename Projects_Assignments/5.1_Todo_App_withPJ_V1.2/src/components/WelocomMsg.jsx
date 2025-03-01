@@ -1,5 +1,6 @@
+import styles from "./WelocomMsg.module.css";
 const WelcomeMsg = () => {
-  return <p>Enjoy your Day!</p>;
+  return <p className={styles.welcome}>Enjoy your Day!</p>;
 };
 
 export default WelcomeMsg;
