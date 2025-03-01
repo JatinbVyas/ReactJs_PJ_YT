@@ -1,5 +1,11 @@
 import styles from "./AddTodo.module.css";
-function AddTodo({ onAddClicked, ontodoNameKeyDown, ontodoDateKeyDown }) {
+function AddTodo({
+  onAddClicked,
+  ontodoNameKeyDown,
+  ontodoDateKeyDown,
+  todoNameValue,
+  tododueDateValue,
+}) {
   return (
     <div className="container text-center">
       <div className="row todo-row">
@@ -11,6 +17,7 @@ function AddTodo({ onAddClicked, ontodoNameKeyDown, ontodoDateKeyDown }) {
             name="todoname"
             placeholder="Enter your todo"
             onChange={ontodoNameKeyDown}
+            value={todoNameValue}
           ></input>
         </div>
         <div className="col-4">
@@ -20,6 +27,7 @@ function AddTodo({ onAddClicked, ontodoNameKeyDown, ontodoDateKeyDown }) {
             id="tododate"
             name="tododate"
             onChange={ontodoDateKeyDown}
+            value={tododueDateValue}
           ></input>
         </div>
         <div className="col-2 items-container">

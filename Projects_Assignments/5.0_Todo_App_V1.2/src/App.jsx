@@ -17,8 +17,8 @@ function App() {
   // ];
 
   const [todolist, settodolist] = useState([]); //useState([{ name: "", dueDate: "" }]);
-  const [todoName, settodoName] = useState();
-  const [todoDate, settodoDate] = useState();
+  const [todoName, settodoName] = useState("");
+  const [todoDate, settodoDate] = useState("");
 
   const todoNameKeyDown = (event) => {
     //console.log(event.target.value);
@@ -43,6 +43,8 @@ function App() {
     ];
     let newtodolist = [...todolist, items];
     settodolist(newtodolist);
+    settodoName("");
+    settodoDate("");
     newtodolist.map((item) => {
       console.log(item[0]["id"]);
     });
@@ -64,6 +66,8 @@ function App() {
         onAddClicked={() => onAddtodoClicked()}
         ontodoNameKeyDown={(event) => todoNameKeyDown(event)}
         ontodoDateKeyDown={(event) => todoDateKeyDown(event)}
+        todoNameValue={todoName}
+        tododueDateValue={todoDate}
       ></AddTodo>
       <TodoItemContainer
         todoItems={todolist}
