@@ -1,16 +1,14 @@
+import { useState } from "react";
 import FoodList from "./FoodList";
 
 function FoodItems(props) {
-  /**
-   * Here we seen the use of passing function as props to child.
-   * Here we passed handleClickEvent to chile FoodList.
-   * and now in FoodList we can handle it as per requirement.
-   * e.g onClick or onChange.
-   */
   let { listofItems } = props;
+  let [activeItems, setactiveItems] = useState([]);
+
   function buyButtonClicked(itemName, event) {
-    console.log(event);
-    alert(`Buy ${itemName}, please`);
+    console.log("Clicked Item is ::", itemName);
+    let clickedItems = [...activeItems, itemName];
+    setactiveItems(clickedItems);
   }
   return (
     <ul className="list-group">
@@ -18,7 +16,8 @@ function FoodItems(props) {
         <FoodList
           key={item}
           foodItem={item}
-          handleClickEvent={() => console.log(`${item} is clicked.`)}
+          isClicked={activeItems.includes(item)}
+          handleClickEvent={(event) => buyButtonClicked(item, event)}
         ></FoodList>
       ))}
     </ul>
