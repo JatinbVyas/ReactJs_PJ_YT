@@ -34,10 +34,31 @@ function App() {
 
   const onAddtodoClicked = () => {
     console.log(`Todo Name is ${todoName} and Todo Date is ${todoDate}`);
-    let items = [{ name: todoName, dueDate: todoDate }];
+    let items = [
+      {
+        id: Math.round(Math.random() * 100),
+        name: todoName,
+        dueDate: todoDate,
+      },
+    ];
     let newtodolist = [...todolist, items];
     settodolist(newtodolist);
+    newtodolist.map((item) => {
+      console.log(item[0]["id"]);
+    });
   };
+
+  function deleteClicked(remmovId) {
+    //console.  log("Todo id comes for delete is::", id["todoId"]);
+    let deletetodoId = remmovId["todoId"];
+    let updatedtodoItems = [...todolist];
+    console.log(updatedtodoItems);
+
+    updatedtodoItems = updatedtodoItems.slice(
+      updatedtodoItems.map((arrayItems) => arrayItems[0]["id"] === deletetodoId)
+    );
+    console.log(updatedtodoItems);
+  }
   return (
     <center className="todo-container">
       <AppName></AppName>
@@ -46,7 +67,10 @@ function App() {
         ontodoNameKeyDown={(event) => todoNameKeyDown(event)}
         ontodoDateKeyDown={(event) => todoDateKeyDown(event)}
       ></AddTodo>
-      <TodoItemContainer todoItems={todolist}></TodoItemContainer>
+      <TodoItemContainer
+        todoItems={todolist}
+        onDeleteClicked={deleteClicked}
+      ></TodoItemContainer>
     </center>
   );
 }
