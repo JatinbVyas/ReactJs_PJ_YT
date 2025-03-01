@@ -15,12 +15,24 @@ function App() {
     const newtodoItem = [...todolist, { name: itemName, dueDate: dueDate }];
     settodolist(newtodoItem);
   };
+
+  const handleDeleteItem = (deleteItemName) => {
+    const newTodoItems = todolist.filter(
+      (item) => item.name !== deleteItemName
+    );
+    settodolist(newTodoItems);
+    console.log("Delete item come for is::", deleteItemName);
+  };
+
   return (
     <center className="todo-container">
       <AppName></AppName>
       <AddTodo onNewItem={handleNewItem}></AddTodo>
       {todolist.length == 0 && <WelcomeMsg></WelcomeMsg>}
-      <TodoItemContainer todoItems={todolist}></TodoItemContainer>
+      <TodoItemContainer
+        todoItems={todolist}
+        onDeleteClick={handleDeleteItem}
+      ></TodoItemContainer>
     </center>
   );
 }

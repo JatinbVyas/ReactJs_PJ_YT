@@ -1,5 +1,5 @@
 import TodoItems from "./TodoItems";
-function TodoItemContainer({ todoItems }) {
+function TodoItemContainer({ todoItems, onDeleteClick }) {
   console.log(todoItems);
   return (
     <>
@@ -9,6 +9,7 @@ function TodoItemContainer({ todoItems }) {
             key={items.name}
             todoItemName={items.name}
             todoItemDate={items.dueDate}
+            onDeleteClick={onDeleteClick}
           ></TodoItems>
         ))}
       </div>
