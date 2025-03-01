@@ -49,6 +49,7 @@ function App() {
     if (event.key === "Enter") {
       let newFoodItem = event.target.value;
       let newFoodList = [...foodItems, newFoodItem];
+      event.target.value = "";
       setfoodItems(newFoodList);
       console.log(newFoodItem);
     }
@@ -65,8 +66,8 @@ function App() {
     <>
       <Container>
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
-        <ErrorMessage listofItems={foodItems}></ErrorMessage>
         <FoodInput handleonkeyDownEvent={onKeyDown}></FoodInput>
+        <ErrorMessage listofItems={foodItems}></ErrorMessage>
         <p>{textToShow}</p>
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
