@@ -1,0 +1,12 @@
+.food-item-bg{
+  background-color: blueviolet;
+  font-weight: 400;
+}
+
+.food-item-color{
+  color: white;
+}
+
+.button {
+  float: right;
+}
