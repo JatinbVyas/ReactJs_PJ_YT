@@ -3,18 +3,10 @@ import AppName from "./components/AppName";
 import "./App.css";
 import TodoItemContainer from "./components/TodoItemContainer";
 import { useState } from "react";
+import WelcomeMsg from "./components/WelocomMsg";
 
 function App() {
-  const InitialTodolist = [
-    {
-      name: "Buy Milk",
-      dueDate: "04/12/2025",
-    },
-    {
-      name: "Go to College",
-      dueDate: "04/12/2025",
-    },
-  ];
+  const InitialTodolist = [];
 
   const [todolist, settodolist] = useState(InitialTodolist);
 
@@ -27,6 +19,7 @@ function App() {
     <center className="todo-container">
       <AppName></AppName>
       <AddTodo onNewItem={handleNewItem}></AddTodo>
+      {todolist.length == 0 && <WelcomeMsg></WelcomeMsg>}
       <TodoItemContainer todoItems={todolist}></TodoItemContainer>
     </center>
   );
