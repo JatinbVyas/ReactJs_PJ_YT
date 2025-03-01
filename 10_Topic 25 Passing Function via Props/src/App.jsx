@@ -6,6 +6,7 @@ import FoodItems from "./components/FoodItems";
 function App() {
   let foodItems = ["Dal Makhani", "Roti", "Green Vegetables", "Milk", "Salad"];
 
+  let textToShow = "Food entered by user.";
   /**
    * Here we seen the use of passing function as props to child.
    * Here we passed handleonChangeEvent to chile FoodInput.
@@ -14,6 +15,11 @@ function App() {
    */
   const onChangeEventCalled = (event) => {
     console.log(event.target.value);
+    textToShow = event.target.value;
+    /**
+     * Above we assigned dynamic value to variable textToShow.
+     * That will change in variable but not in DOM because, rendring will done only ones.
+     */
   };
 
   /**
@@ -25,6 +31,7 @@ function App() {
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
         <ErrorMessage listofItems={foodItems}></ErrorMessage>
         <FoodInput handleonChangeEvent={onChangeEventCalled}></FoodInput>
+        <p>{textToShow}</p>
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
 
