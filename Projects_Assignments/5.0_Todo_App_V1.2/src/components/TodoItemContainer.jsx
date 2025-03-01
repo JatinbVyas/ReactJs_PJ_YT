@@ -1,6 +1,6 @@
 import TodoItems from "./TodoItems";
 function TodoItemContainer({ todoItems }) {
-  console.log(todoItems);
+  //console.log(todoItems);
   return (
     <>
       <div className="items-container">
