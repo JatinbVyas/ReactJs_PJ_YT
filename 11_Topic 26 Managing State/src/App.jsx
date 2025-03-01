@@ -23,9 +23,11 @@ function App() {
    * And that automatically assigned to textToShow variable.
    * Here in useState("Default value") we can pass initiall default value also.
    */
-  let textStateArray = useState();
-  let textToShow = textStateArray[0];
-  let setTextState = textStateArray[1];
+  // let textStateArray = useState();
+  // let textToShow = textStateArray[0];
+  // let setTextState = textStateArray[1];
+  // new syntaxt to write. we destructure the array here.
+  let [textToShow, setTextState] = useState("Food item entered by user.");
 
   console.log(`Current value of textSate is :: ${textToShow}`);
   /**
