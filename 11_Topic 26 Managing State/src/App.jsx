@@ -49,7 +49,7 @@ function App() {
     if (event.key === "Enter") {
       let newFoodItem = event.target.value;
       let newFoodList = [...foodItems, newFoodItem];
-      event.target.value = "";
+      event.target.value = ""; //This will blank the FoodInput text box
       setfoodItems(newFoodList);
       console.log(newFoodItem);
     }
