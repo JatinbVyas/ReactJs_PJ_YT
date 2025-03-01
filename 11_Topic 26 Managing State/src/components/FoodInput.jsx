@@ -6,14 +6,19 @@ import styles from "./FoodInput.module.css";
  * So when user type anything on input text this event will get called.
  * here we received it in props object but we directly destructured it.
  */
-const FoodInput = ({ handleonChangeEvent }) => {
+const FoodInput = ({ handleonkeyDownEvent }) => {
   return (
-    <input
-      type="text"
-      placeholder="Enter your food item."
-      className={styles.foodInput}
-      onChange={handleonChangeEvent}
-    ></input>
+    <>
+      <input
+        type="text"
+        placeholder="Enter your food item."
+        className={styles.foodInput}
+        onKeyDown={handleonkeyDownEvent}
+      ></input>
+      <button className={`${styles.foodAddButtons} btn btn-success`}>
+        Add
+      </button>
+    </>
   );
 };
 

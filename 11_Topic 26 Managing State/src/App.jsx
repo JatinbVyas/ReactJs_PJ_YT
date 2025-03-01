@@ -5,7 +5,7 @@ import FoodInput from "./components/FoodInput";
 import FoodItems from "./components/FoodItems";
 
 function App() {
-  let foodItems = ["Dal Makhani", "Roti", "Green Vegetables", "Milk", "Salad"];
+  //let foodItems = ["Dal Makhani", "Roti", "Green Vegetables", "Milk", "Salad"];
 
   //let  = "Food entered by user.";
 
@@ -29,16 +29,29 @@ function App() {
   // new syntaxt to write. we destructure the array here.
   let [textToShow, setTextState] = useState("Food item entered by user.");
 
-  console.log(`Current value of textSate is :: ${textToShow}`);
-  /**
-   * Here we seen the use of passing function as props to child.
-   * Here we passed handleonChangeEvent to chile FoodInput.
-   * and now in FoodInput we can handle it as per requirement.
-   * e.g onClick or onChange.
-   */
-  const onChangeEventCalled = (event) => {
-    console.log(event.target.value);
+  let [foodItems, setfoodItems] = useState([]);
+  const onKeyDown = (event) => {
+    //console.log(event);
+    /**
+     * So here we did dynamic food list items entry.
+     * At line number 35 we deifned the useState for foodItems with no default values.
+     * So when first App component is rendred there will be no value in list.
+     * Now we passed function prop to chile component that is handleonkeyDownEvent. So this function props writtend
+     * to handle onKeyDown function that called from FoodInput component and written here in App component.
+     * Now when onKeyDown function is called we received new item when user hit Enter.
+     * So here we written if condition to handle that part.
+     * in  newFoodList variable using triple dot (spread operator) we assigned old/existing value and given one value of fooditem
+     * also.
+     * after that we called setfoodItems() and passed newFoodList so that will auto assigned to foodItems via React
+     * as per concept of useState and that will passed as props to child and that will get added to list.
+     */
     setTextState(event.target.value);
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      let newFoodList = [...foodItems, newFoodItem];
+      setfoodItems(newFoodList);
+      console.log(newFoodItem);
+    }
     /**
      * Above we assigned dynamic value to variable textToShow.
      * That will change in variable but not in DOM because, rendring will done only ones.
@@ -53,7 +66,7 @@ function App() {
       <Container>
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
         <ErrorMessage listofItems={foodItems}></ErrorMessage>
-        <FoodInput handleonChangeEvent={onChangeEventCalled}></FoodInput>
+        <FoodInput handleonkeyDownEvent={onKeyDown}></FoodInput>
         <p>{textToShow}</p>
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
