@@ -13,7 +13,7 @@ const FoodList = (props) => {
       <span className={`${foodlistcss["food-item-color"]}`}>{foodItem}</span>
       <button
         className={`${foodlistcss.button} btn btn-success`}
-        onClick={() => alert("Buy button clicked.")}
+        onClick={() => alert(`Buy ${foodItem}, please`)}
       >
         Buy
       </button>
