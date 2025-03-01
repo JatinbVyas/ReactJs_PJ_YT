@@ -68,7 +68,7 @@ function App() {
         <h1 style={{ textAlign: "center" }}>Healthy Foods</h1>
         <FoodInput handleonkeyDownEvent={onKeyDown}></FoodInput>
         <ErrorMessage listofItems={foodItems}></ErrorMessage>
-        <p>{textToShow}</p>
+        {/* <p>{textToShow}</p> */}
         <FoodItems listofItems={foodItems}></FoodItems>
       </Container>
 
