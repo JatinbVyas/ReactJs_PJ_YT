@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./AddTodo.module.css";
+import { IoIosAddCircle } from "react-icons/io";
+
 function AddTodo({ onNewItem }) {
   const [todoName, settodoName] = useState("");
   const [dueDate, setdueDate] = useState("");
@@ -49,7 +51,7 @@ function AddTodo({ onNewItem }) {
             className="btn btn-success  todo-button"
             onClick={handleOnAddClick}
           >
-            Add
+            <IoIosAddCircle />
           </button>
         </div>
       </div>
