@@ -12,8 +12,23 @@ function App() {
 
   const handleNewItem = (itemName, dueDate) => {
     console.log("New items is::", itemName, dueDate);
-    const newtodoItem = [...todolist, { name: itemName, dueDate: dueDate }];
-    settodolist(newtodoItem);
+    //const newtodoItem = [...todolist, { name: itemName, dueDate: dueDate }];
+    /**
+     * Here we seen the use of another way to update current state of value with previous values.
+     * directly use of ...todolist state variable to get previouse latest update value may be sometime
+     * gives incorrect value when manytimes states are changing,
+     * Due to this you can pass anonyoms function in settolist as below. currValue is anonyoms variable
+     * it holds the latest previous values.
+     * Two syntax for this.
+     */
+    // settodolist((currValue) => [
+    //   ...currValue,
+    //   { name: itemName, dueDate: dueDate },
+    // ]);
+    settodolist((currValue) => {
+      const newtodoItem = [...currValue, { name: itemName, dueDate: dueDate }];
+      return newtodoItem;
+    });
   };
 
   const handleDeleteItem = (deleteItemName) => {
