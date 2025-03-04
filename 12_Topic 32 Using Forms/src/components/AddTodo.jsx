@@ -15,7 +15,18 @@ function AddTodo({ onNewItem }) {
     setdueDate(event.target.value);
   };
 
-  const handleOnAddClick = () => {
+  const handleOnAddClick = (event) => {
+    /**
+     * Here we used the concept of form tag for any form.
+     * So two input and one button we placed inside form tag here.
+     * and in form we have action that genrally send data to server onclick of submit button.
+     * but here we locally handlig this thing so we removed onClick event handlig from button
+     * and placed it to form tag with onSubmit.
+     * and when handleOnAddClick function is called on click event of button it behaves as earlier
+     * we write event.preventDefault() means prevent form tags default behaviour and now when click eevent hapen
+     * it will go back to App component from where it passed.
+     */
+    event.preventDefault();
     onNewItem(todoName, dueDate);
     settodoName("");
     setdueDate("");
@@ -23,7 +34,7 @@ function AddTodo({ onNewItem }) {
 
   return (
     <div className="container text-center">
-      <div className="row todo-row">
+      <form className="row todo-row" onSubmit={handleOnAddClick}>
         <div className="col-6">
           <input
             className={styles.inputWidth}
@@ -46,15 +57,11 @@ function AddTodo({ onNewItem }) {
           ></input>
         </div>
         <div className="col-2 items-container">
-          <button
-            type="button"
-            className="btn btn-success  todo-button"
-            onClick={handleOnAddClick}
-          >
+          <button type="submit" className="btn btn-success  todo-button">
             <IoIosAddCircle />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
