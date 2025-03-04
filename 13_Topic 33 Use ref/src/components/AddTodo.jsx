@@ -1,35 +1,33 @@
-import { useState } from "react";
+import { useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { IoIosAddCircle } from "react-icons/io";
 
 function AddTodo({ onNewItem }) {
-  const [todoName, settodoName] = useState("");
-  const [dueDate, setdueDate] = useState("");
-
-  const handletodoNameOnChange = (event) => {
-    console.log(event.target.value);
-    settodoName(event.target.value);
-  };
-  const handledueDateOnChange = (event) => {
-    console.log(event.target.value);
-    setdueDate(event.target.value);
-  };
+  const todoNameElement = useRef();
+  const tododueDateElement = useRef();
 
   const handleOnAddClick = (event) => {
-    /**
-     * Here we used the concept of form tag for any form.
-     * So two input and one button we placed inside form tag here.
-     * and in form we have action that genrally send data to server onclick of submit button.
-     * but here we locally handlig this thing so we removed onClick event handlig from button
-     * and placed it to form tag with onSubmit.
-     * and when handleOnAddClick function is called on click event of button it behaves as earlier
-     * we write event.preventDefault() means prevent form tags default behaviour and now when click eevent hapen
-     * it will go back to App component from where it passed.
-     */
     event.preventDefault();
+
+    /**
+     * Here we used the concept of UseRef() hook of react.
+     * This hook holds the current value of variable and whenever value changed it will not rerender the component.
+     * E.g if declare one variable like let counter = useRef(0); given 0 as default value.
+     * now in any event we can update value of it. E.g in change event of input we update value like counter.current += 1
+     * it means it increase with 1 when input onchange event is called. but it will not rerender the component.
+     *
+     * Also we can use this hook as reference of tag. here in Input tag we used ref attribute and assign the useRef() hook variable to
+     * it.
+     * So now when value is change of input tag it will get store in this todoNameElement variable.
+     * and we can access directly it with .current value.
+     * Due to use of this we can remove onChange event of both input tag and also removed useState for both because with ref of uesRef we get current value of both inputs.
+     * and with this we are able to remove value attribute of input tag also.
+     */
+    const todoName = todoNameElement.current.value;
+    const dueDate = tododueDateElement.current.value;
+    todoNameElement.current.value = "";
+    tododueDateElement.current.value = "";
     onNewItem(todoName, dueDate);
-    settodoName("");
-    setdueDate("");
   };
 
   return (
@@ -42,8 +40,7 @@ function AddTodo({ onNewItem }) {
             id="todoname"
             name="todoname"
             placeholder="Enter your todo"
-            value={todoName}
-            onChange={(event) => handletodoNameOnChange(event)}
+            ref={todoNameElement}
           ></input>
         </div>
         <div className="col-4">
@@ -52,8 +49,7 @@ function AddTodo({ onNewItem }) {
             type="date"
             id="tododate"
             name="tododate"
-            value={dueDate}
-            onChange={(event) => handledueDateOnChange(event)}
+            ref={tododueDateElement}
           ></input>
         </div>
         <div className="col-2 items-container">
