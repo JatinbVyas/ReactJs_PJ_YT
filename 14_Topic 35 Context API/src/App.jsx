@@ -43,6 +43,8 @@ function App() {
      * So here we passed in one JS objecxt first is array of todo items, second is function of addnewitem and third is function of
      * deleteitem.
      * so now both fucntions no need to pass as props in component addtodo and todocontainer.
+     *
+     * So at the end all three value itemlist , add function and del function we were passing thourgh props instead of this now we store it in context provider and pass it thourgh value attr.
      */
     <TodoItemsContext.Provider
       value={{ itemData: todolist, addItem: addNewItem, delItem: deleteItem }}
