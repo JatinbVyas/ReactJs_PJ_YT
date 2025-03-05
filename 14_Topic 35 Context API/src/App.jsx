@@ -27,8 +27,6 @@ function App() {
     console.log("Delete item come for is::", deleteItemName);
   };
 
-  const defaultTodoItems = [{ name: "learn React", dueDate: "02/12/2025" }];
-
   return (
     /**
      * Here we learning new concept of Context Provider or we can say Context API
@@ -36,8 +34,11 @@ function App() {
      * For we created one file in src/store/todo-items-store.jsx and export it.
      * we can define as below <TodoItemsContext.Provider value={[]}></TodoItemsContext.Provider> so all thew component
      * that comes under this can access that context provider value. we need pass value prop to context provider itself also.
+     *
+     * Now we seen that state variable can directly pass to context provider and this way we can use context provide API
+     * with state variable. Whenever state variable updates it pass new value to all components with the use of context provider value attribute.
      */
-    <TodoItemsContext.Provider value={defaultTodoItems}>
+    <TodoItemsContext.Provider value={todolist}>
       <center className="todo-container">
         <AppName></AppName>
         <AddTodo onNewItem={handleNewItem}></AddTodo>
