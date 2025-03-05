@@ -11,7 +11,7 @@ function App() {
 
   const [todolist, settodolist] = useState(InitialTodolist);
 
-  const handleNewItem = (itemName, dueDate) => {
+  const addNewItem = (itemName, dueDate) => {
     console.log("New items is::", itemName, dueDate);
     settodolist((currValue) => {
       const newtodoItem = [...currValue, { name: itemName, dueDate: dueDate }];
@@ -19,7 +19,7 @@ function App() {
     });
   };
 
-  const handleDeleteItem = (deleteItemName) => {
+  const deleteItem = (deleteItemName) => {
     const newTodoItems = todolist.filter(
       (item) => item.name !== deleteItemName
     );
@@ -37,13 +37,21 @@ function App() {
      *
      * Now we seen that state variable can directly pass to context provider and this way we can use context provide API
      * with state variable. Whenever state variable updates it pass new value to all components with the use of context provider value attribute.
+     *
+     * Again we learn new concept in context API is that , we can pass fuctions props also as context provider value.
+     * Context provider can send any thing, it could be value, array, method anything.
+     * So here we passed in one JS objecxt first is array of todo items, second is function of addnewitem and third is function of
+     * deleteitem.
+     * so now both fucntions no need to pass as props in component addtodo and todocontainer.
      */
-    <TodoItemsContext.Provider value={todolist}>
+    <TodoItemsContext.Provider
+      value={{ itemData: todolist, addItem: addNewItem, delItem: deleteItem }}
+    >
       <center className="todo-container">
         <AppName></AppName>
-        <AddTodo onNewItem={handleNewItem}></AddTodo>
+        <AddTodo></AddTodo>
         <WelcomeMsg></WelcomeMsg>
-        <TodoItemContainer onDeleteClick={handleDeleteItem}></TodoItemContainer>
+        <TodoItemContainer></TodoItemContainer>
       </center>
     </TodoItemsContext.Provider>
   );

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import TodoItems from "./TodoItems";
 import TodoItemsContext from "../store/todo-items-store";
-function TodoItemContainer({ onDeleteClick }) {
+function TodoItemContainer() {
   /**
    * Here we learning new concept Context API, this is one kind of data store from where any component can access the data
    * But but component only can access data if that component is under that particular context provider tag.
@@ -10,7 +10,9 @@ function TodoItemContainer({ onDeleteClick }) {
    * useContext is one of the hook of react with the of this hook we can access TodoItemContext.
    * here todoItems variable have value store inside TodoItemsContext.
    */
-  const todoItems = useContext(TodoItemsContext);
+  const contextObj = useContext(TodoItemsContext);
+  const todoItems = contextObj.itemData;
+
   console.log("Items from context", todoItems);
   return (
     <>
@@ -20,7 +22,6 @@ function TodoItemContainer({ onDeleteClick }) {
             key={items.name}
             todoItemName={items.name}
             todoItemDate={items.dueDate}
-            onDeleteClick={onDeleteClick}
           ></TodoItems>
         ))}
       </div>

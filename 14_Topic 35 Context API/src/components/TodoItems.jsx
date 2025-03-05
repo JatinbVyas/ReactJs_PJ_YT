@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import TodoItemsContext from "../store/todo-items-store";
 
 function TodoItems(props) {
   let { todoItemName } = props;
   let { todoItemDate } = props;
-  let { onDeleteClick } = props;
+  /**
+   * Here we learn new concept in context API that we can fetch function from context provider instead of receiveing as props from
+   * parent.
+   * Here we fetch delItem function from context provider that is already passed in value in App component.
+   */
+  const { delItem } = useContext(TodoItemsContext);
   return (
     <div className="container">
       <div className="row todo-row">
@@ -13,7 +20,7 @@ function TodoItems(props) {
           <button
             type="button"
             className="btn btn-danger todo-button"
-            onClick={() => onDeleteClick(todoItemName)}
+            onClick={() => delItem(todoItemName)}
           >
             <AiFillDelete />
           </button>
