@@ -2,7 +2,6 @@ import AddTodo from "./components/AddTodo";
 import AppName from "./components/AppName";
 import "./App.css";
 import TodoItemContainer from "./components/TodoItemContainer";
-import { useState } from "react";
 import WelcomeMsg from "./components/WelocomMsg";
 import TodoItemsContext from "./store/todo-items-store";
 import { useReducer } from "react";
@@ -23,14 +22,14 @@ const todoItemReducer = (currtodoItem, action) => {
       { name: action.payload.itemName, dueDate: action.payload.dueDate },
     ];
   } else if (action.type === "DELETE_ITEM") {
+    newtodoItem = currtodoItem.filter(
+      (item) => item.name !== action.payload.itemName
+    );
   }
   return newtodoItem;
 };
 
 function App() {
-  const InitialTodolist = [];
-
-  //const [todolist, settodolist] = useState(InitialTodolist);
   /**
    * Here we learned new concept useReducer() hook.
    * This hook can be used instead of useState();
@@ -52,11 +51,11 @@ function App() {
   };
 
   const deleteItem = (deleteItemName) => {
-    const newTodoItems = todolist.filter(
-      (item) => item.name !== deleteItemName
-    );
-    settodolist(newTodoItems);
-    console.log("Delete item come for is::", deleteItemName);
+    const deleteitemAction = {
+      type: "DELETE_ITEM",
+      payload: { itemName: deleteItemName },
+    };
+    dispatchtodoList(deleteitemAction);
   };
 
   return (
