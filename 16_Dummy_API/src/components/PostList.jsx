@@ -4,10 +4,20 @@ import { Postlist as postData } from "../store/Postliststore";
 import WelcomeMSG from "./WelcomeMSG";
 
 const PostList = () => {
-  const { postList } = useContext(postData);
+  const { postList, addDefaultPost } = useContext(postData);
+
+  const handlPostClick = () => {
+    fetch("https://dummyjson.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        addDefaultPost(data.posts);
+      });
+  };
   return (
     <>
-      {postList.length == 0 && <WelcomeMSG></WelcomeMSG>}
+      {postList.length == 0 && (
+        <WelcomeMSG onGetPostsClick={handlPostClick}></WelcomeMSG>
+      )}
       {postList.map((post) => (
         <PostViewCP key={post.postId} post={post}></PostViewCP>
       ))}

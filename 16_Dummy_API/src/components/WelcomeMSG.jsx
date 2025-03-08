@@ -1,6 +1,15 @@
-const WelcomeMSG = () => {
+const WelcomeMSG = ({ onGetPostsClick }) => {
   return (
-    <h1 style={{ textAlign: "center", margin: "10px" }}>There are no posts.</h1>
+    <center style={{ textAlign: "center", margin: "10px" }}>
+      <h1>There are no posts.</h1>
+      <button
+        type="button"
+        onClick={onGetPostsClick}
+        className="btn btn-primary"
+      >
+        Get Post from Server!
+      </button>
+    </center>
   );
 };
 
