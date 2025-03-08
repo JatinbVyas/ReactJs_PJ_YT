@@ -4,7 +4,7 @@ const SidebarCP = ({ selectedTab, setSelectedTab }) => {
     <>
       <div
         className={`d-flex flex-column flex-shrink-0 p-3 text-bg-dark ${sidebarcss.sidebarHight}`}
-        style={{ width: "280px" }}
+        style={{ width: "180px" }}
       >
         <a
           href="/"
