@@ -40,10 +40,7 @@ const PostListProvider = ({ children }) => {
       payload: { postdeletId },
     });
   };
-  const [postList, dispatchPostlist] = useReducer(
-    postListReducer,
-    DEFAULT_POST
-  );
+  const [postList, dispatchPostlist] = useReducer(postListReducer, []);
   return (
     <Postlist.Provider
       value={{ postList: postList, addPost: addPost, deletePost: deletePost }}
@@ -53,22 +50,4 @@ const PostListProvider = ({ children }) => {
   );
 };
 
-const DEFAULT_POST = [
-  {
-    postId: "1",
-    titlePost: "Going to Mumbai",
-    bodyPost: "Hi Friends, I'm going to mumbai, for my vacations.",
-    reactionsPost: "0",
-    userId: "user-9",
-    tags: ["vacation", "mumbai"],
-  },
-  {
-    postId: "2",
-    titlePost: "Creacked the exam",
-    bodyPost: "Finally creacked the exam",
-    reactionsPost: "15",
-    userId: "user-12",
-    tags: ["Graduate", "unbelivable"],
-  },
-];
 export default PostListProvider;
