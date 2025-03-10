@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 export const Postlist = createContext({
   postList: [],
@@ -59,12 +59,23 @@ const PostListProvider = ({ children }) => {
     });
   };
 
-  const deletePost = (postdeletId) => {
-    dispatchPostlist({
-      type: "DELETE_POST",
-      payload: { postdeletId },
-    });
-  };
+  /**
+   * use callback is a hook.
+   * when method is written inside useCallback hook so when component is repaint at that time if
+   * there is no change in method then method will not get repaint and due to this the component who recevie
+   * this method as prop will not repaint.
+   * this take two arguments first is function and second is dependancey array.
+   */
+  const deletePost = useCallback(
+    (postdeletId) => {
+      dispatchPostlist({
+        type: "DELETE_POST",
+        payload: { postdeletId },
+      });
+    },
+    [dispatchPostlist]
+  );
+
   const [postList, dispatchPostlist] = useReducer(postListReducer, []);
   return (
     <Postlist.Provider
