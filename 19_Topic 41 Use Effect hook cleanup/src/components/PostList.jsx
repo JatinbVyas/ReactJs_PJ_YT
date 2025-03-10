@@ -23,6 +23,14 @@ const PostList = () => {
         addDefaultPost(data.posts);
         setFetching(false);
       });
+
+    /**
+     * Whenever this particular component is killed at that time this return function will get execute.
+     * This can be use to stop timer or cancel api call when component is killed.
+     */
+    return () => {
+      console.log("Cleaning up use effect");
+    };
   }, []);
 
   return (
