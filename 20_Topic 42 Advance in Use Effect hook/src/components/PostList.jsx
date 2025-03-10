@@ -17,7 +17,15 @@ const PostList = () => {
    */
   useEffect(() => {
     setFetching(true);
-    fetch("https://dummyjson.com/posts")
+    /**
+     * this is abort controller , we passing signal as one extra parameter with API call
+     * so when in case user shift the component then if Api call is pending then it will
+     * cancel the API call using controller.Abort() method.
+     */
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch("https://dummyjson.com/posts", { signal })
       .then((res) => res.json())
       .then((data) => {
         addDefaultPost(data.posts);
@@ -30,6 +38,7 @@ const PostList = () => {
      */
     return () => {
       console.log("Cleaning up use effect");
+      controller.abort();
     };
   }, []);
 
