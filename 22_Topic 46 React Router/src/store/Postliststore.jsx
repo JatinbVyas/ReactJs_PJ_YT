@@ -1,8 +1,14 @@
-import { createContext, useCallback, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 export const Postlist = createContext({
   postList: [],
-  addDefaultPost: () => {},
+  fetching: false,
   addPost: () => {},
   deletePost: () => {},
 });
@@ -78,11 +84,30 @@ const PostListProvider = ({ children }) => {
     [dispatchPostlist]
   );
 
+  const [fetching, setFetching] = useState(false);
+
+  useEffect(() => {
+    setFetching(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch("https://dummyjson.com/posts", { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        addDefaultPost(data.posts);
+        setFetching(false);
+      });
+    return () => {
+      console.log("Cleaning up use effect");
+      controller.abort();
+    };
+  }, []);
+
   return (
     <Postlist.Provider
       value={{
         postList: postList,
-        addDefaultPost: addDefaultPost,
+        fetching: fetching,
         addPost: addPost,
         deletePost: deletePost,
       }}
