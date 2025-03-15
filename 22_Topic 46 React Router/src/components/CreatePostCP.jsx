@@ -23,7 +23,19 @@ const CreatePostCP = () => {
     reactions.current.value = "";
     tags.current.value = "";
 
-    addPost(userid, posttitle, postcontent, reactionS, tag);
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: posttitle,
+        body: postcontent,
+        userId: userid,
+        reactions: reactionS,
+        tags: tag,
+      }),
+    })
+      .then((res) => res.json())
+      .then((resObj) => addPost(resObj));
   };
   return (
     <>

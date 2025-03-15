@@ -45,16 +45,16 @@ const PostListProvider = ({ children }) => {
     });
   };
 
-  const addPost = (userId, postTitle, postContent, reactions, tags) => {
+  const addPost = (postData) => {
     dispatchPostlist({
       type: "ADD_POST",
       payload: {
         postId: Date.now(),
-        titlePost: postTitle,
-        bodyPost: postContent,
-        reactionsPost: reactions,
-        userId: userId,
-        tags: tags,
+        titlePost: postData.title,
+        bodyPost: postData.body,
+        reactionsPost: postData.reactions,
+        userId: postData.userId,
+        tags: postData.tags,
       },
     });
   };
@@ -66,6 +66,8 @@ const PostListProvider = ({ children }) => {
    * this method as prop will not repaint.
    * this take two arguments first is function and second is dependancey array.
    */
+  const [postList, dispatchPostlist] = useReducer(postListReducer, []);
+
   const deletePost = useCallback(
     (postdeletId) => {
       dispatchPostlist({
@@ -76,7 +78,6 @@ const PostListProvider = ({ children }) => {
     [dispatchPostlist]
   );
 
-  const [postList, dispatchPostlist] = useReducer(postListReducer, []);
   return (
     <Postlist.Provider
       value={{
