@@ -6,6 +6,7 @@ import HeaderCP from "./components/HeaderCP";
 import PostList from "./components/PostList";
 import SidebarCP from "./components/SidebarCP";
 import PostListProvider from "./store/Postliststore";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Home");
@@ -18,11 +19,8 @@ function App() {
         ></SidebarCP>
         <div className="content">
           <HeaderCP></HeaderCP>
-          {selectedTab === "Home" ? (
-            <PostList></PostList>
-          ) : (
-            <CreatePostCP></CreatePostCP>
-          )}
+
+          <Outlet />
 
           <FooterCP></FooterCP>
         </div>
