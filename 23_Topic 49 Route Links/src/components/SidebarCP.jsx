@@ -1,37 +1,44 @@
 import sidebarcss from "./SidebarCP.module.css";
-const SidebarCP = ({ selectedTab, setSelectedTab }) => {
+import { Link } from "react-router-dom";
+
+/**
+ *When we use anchor tag <a> at that time it load entire page instead of only component and due to this
+ it violets the react rules.
+ instead of that we can use Link component from react-router-dom that will render only component not entire page. for giving link 'to' property is used 
+ */
+const SidebarCP = () => {
   return (
     <>
       <div
         className={`d-flex flex-column flex-shrink-0 p-3 text-bg-dark ${sidebarcss.sidebarHight}`}
         style={{ width: "180px" }}
       >
-        <a
-          href="/"
+        <Link
+          to="/"
           className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <svg className="bi pe-none me-2" width="40" height="32">
             <use xlinkHref="#bootstrap"></use>
           </svg>
           <span className="fs-4">Sidebar</span>
-        </a>
+        </Link>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
-            <a href="/" className="nav-link text-white" aria-current="page">
+            <Link to="/" className="nav-link text-white" aria-current="page">
               <svg className="bi pe-none me-2" width="16" height="16">
                 <use xlinkHref="#home"></use>
               </svg>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/create-post" className="nav-link text-white">
+            <Link to="/create-post" className="nav-link text-white">
               <svg className="bi pe-none me-2" width="16" height="16">
                 <use xlinkHref="#speedometer2"></use>
               </svg>
               Create Post
-            </a>
+            </Link>
           </li>
         </ul>
         <hr />
