@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import CreatePostCP from "./components/CreatePostCP";
 import FooterCP from "./components/FooterCP";
 import HeaderCP from "./components/HeaderCP";
-import PostList from "./components/PostList";
 import SidebarCP from "./components/SidebarCP";
 import PostListProvider from "./store/Postliststore";
 import { Outlet } from "react-router-dom";

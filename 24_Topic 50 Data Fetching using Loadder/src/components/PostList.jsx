@@ -9,10 +9,23 @@ const PostList = () => {
    * to this component.
    */
   const postList = useLoaderData();
+
+  let initialsPostList = [];
+  postList.forEach((element) => {
+    initialsPostList.push({
+      postId: element.id,
+      titlePost: element.title,
+      bodyPost: element.body,
+      reactionsPost: element.reactions.likes,
+      userId: element.userId,
+      tags: element.tags,
+    });
+  });
+
   return (
     <>
-      {postList.length == 0 && <WelcomeMSG></WelcomeMSG>}
-      {postList.map((post) => (
+      {initialsPostList.length == 0 && <WelcomeMSG></WelcomeMSG>}
+      {initialsPostList.map((post) => (
         <PostViewCP key={post.postId} post={post}></PostViewCP>
       ))}
     </>
