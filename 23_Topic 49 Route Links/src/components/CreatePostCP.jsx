@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import createPostCSS from "./CreatePostCP.module.css";
 import { Postlist } from "../store/Postliststore";
+import { useNavigate } from "react-router-dom";
 const CreatePostCP = () => {
   const { addPost } = useContext(Postlist);
   const userId = useRef();
@@ -8,6 +9,13 @@ const CreatePostCP = () => {
   const postContent = useRef();
   const reactions = useRef();
   const tags = useRef();
+
+  /**
+   * Using this useNavigate hook we can move from on component to another one once certain action is completed.
+   * Here when user click on Post button and addPost is completed we move to home page using
+   * navigate("/")
+   */
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +43,10 @@ const CreatePostCP = () => {
       }),
     })
       .then((res) => res.json())
-      .then((resObj) => addPost(resObj));
+      .then((resObj) => {
+        addPost(resObj);
+        navigate("/");
+      });
   };
   return (
     <>
