@@ -1,63 +1,20 @@
-import { useContext, useRef } from "react";
+import { Form, redirect } from "react-router-dom";
 import createPostCSS from "./CreatePostCP.module.css";
-import { Postlist } from "../store/Postliststore";
-import { useNavigate } from "react-router-dom";
+
 const CreatePostCP = () => {
-  const { addPost } = useContext(Postlist);
-  const userId = useRef();
-  const postTitle = useRef();
-  const postContent = useRef();
-  const reactions = useRef();
-  const tags = useRef();
+  //const { addPost } = useContext(Postlist);
 
-  /**
-   * Using this useNavigate hook we can move from on component to another one once certain action is completed.
-   * Here when user click on Post button and addPost is completed we move to home page using
-   * navigate("/")
-   */
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const userid = userId.current.value;
-    const posttitle = postTitle.current.value;
-    const postcontent = postContent.current.value;
-    const reactionS = reactions.current.value;
-    const tag = tags.current.value.split(" ");
-
-    userId.current.value = "";
-    postTitle.current.value = "";
-    postContent.current.value = "";
-    reactions.current.value = "";
-    tags.current.value = "";
-
-    fetch("https://dummyjson.com/posts/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: posttitle,
-        body: postcontent,
-        userId: userid,
-        reactions: reactionS,
-        tags: tag,
-      }),
-    })
-      .then((res) => res.json())
-      .then((resObj) => {
-        addPost(resObj);
-        navigate("/");
-      });
-  };
+  const handleSubmit = (event) => {};
   return (
     <>
-      <form className={`${createPostCSS.createPost}`} onSubmit={handleSubmit}>
+      <Form method="POST" className={`${createPostCSS.createPost}`}>
         <div className="mb-3">
           <label htmlFor="userId" className="form-label">
             Enter your user id
           </label>
           <input
             type="text"
-            ref={userId}
+            name="userId"
             className="form-control"
             id="userId"
           />
@@ -68,7 +25,7 @@ const CreatePostCP = () => {
           </label>
           <input
             type="text"
-            ref={postTitle}
+            name="title"
             className="form-control"
             id="titlePost"
           />
@@ -78,7 +35,7 @@ const CreatePostCP = () => {
             Post Content
           </label>
           <textarea
-            ref={postContent}
+            name="body"
             className="form-control"
             id="bodyPost"
           ></textarea>
@@ -89,7 +46,7 @@ const CreatePostCP = () => {
           </label>
           <input
             type="text"
-            ref={reactions}
+            name="reactions"
             className="form-control"
             id="reactionsPost"
           />
@@ -98,14 +55,44 @@ const CreatePostCP = () => {
           <label htmlFor="tags" className="form-label">
             Enter your hashTags
           </label>
-          <input type="text" ref={tags} className="form-control" id="tags" />
+          <input type="text" name="tags" className="form-control" id="tags" />
         </div>
         <button type="submit" className="btn btn-primary">
           Post
         </button>
-      </form>
+      </Form>
     </>
   );
 };
 
+/**
+ * we removed everything from CreaePostCP component and define below methos for submit data.
+ * So when Form data is submitted it can sent a request to server for submite data.
+ * @returns
+ */
+
+export async function createPostAction(data) {
+  const formsData = await data.request.formData();
+  const postData = Object.fromEntries(formsData);
+  postData.tags = postData.tags.split(" ");
+  console.log(postData);
+  fetch("https://dummyjson.com/posts/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: postData.title,
+      body: postData.body,
+      userId: postData.userId,
+      reactions: postData.reactions,
+      tags: postData.tags,
+    }),
+  })
+    .then((res) => res.json())
+    .then((resObj) => {
+      //addPost(resObj);
+      console.log(resObj);
+    });
+
+  return redirect("/");
+}
 export default CreatePostCP;
