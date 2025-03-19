@@ -1,22 +1,29 @@
-import { useContext } from "react";
 import PostViewCP from "./PostViewCP";
-import { Postlist as postData } from "../store/Postliststore";
 import WelcomeMSG from "./WelcomeMSG";
-import Loadder from "./Loadder";
+import { useLoaderData } from "react-router-dom";
 
 const PostList = () => {
-  const { postList, fetching } = useContext(postData);
-
+  /**
+   * useLoaderData is hook of react and import from react-router-dom package.
+   * this hook use to fetch data in variable that is in returened in loader in main.jasx while route
+   * to this component.
+   */
+  const postList = useLoaderData();
   return (
     <>
-      {fetching == true && <Loadder></Loadder>}
-      {!fetching && postList.length == 0 && <WelcomeMSG></WelcomeMSG>}
-      {!fetching &&
-        postList.map((post) => (
-          <PostViewCP key={post.postId} post={post}></PostViewCP>
-        ))}
+      {postList.length == 0 && <WelcomeMSG></WelcomeMSG>}
+      {postList.map((post) => (
+        <PostViewCP key={post.postId} post={post}></PostViewCP>
+      ))}
     </>
   );
 };
 
+export const postLoadder = () => {
+  return fetch("https://dummyjson.com/posts")
+    .then((res) => res.json())
+    .then((data) => {
+      return data.posts;
+    });
+};
 export default PostList;
