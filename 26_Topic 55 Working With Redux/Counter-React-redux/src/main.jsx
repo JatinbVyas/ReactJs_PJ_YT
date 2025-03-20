@@ -7,6 +7,7 @@ import counterStore from "./store/index.js";
 
 /**
  * Provider here is a component of react-redux pakage that joins react and redux
+ * in store we need to give our store name that is created in store/index.js file
  */
 createRoot(document.getElementById("root")).render(
   <StrictMode>
