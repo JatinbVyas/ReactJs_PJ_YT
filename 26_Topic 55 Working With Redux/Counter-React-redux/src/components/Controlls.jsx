@@ -24,6 +24,10 @@ const Controlls = () => {
     inputValue.current.value = "";
   };
 
+  const handlePrivacyToggle = () => {
+    dispatch({ type: "PRIVACY" });
+  };
+
   return (
     <>
       <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -36,6 +40,13 @@ const Controlls = () => {
         </button>
         <button type="button" className="btn btn-success" onClick={onDecrement}>
           Decrement by -1
+        </button>
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={handlePrivacyToggle}
+        >
+          Privacy
         </button>
       </div>
       <br></br>

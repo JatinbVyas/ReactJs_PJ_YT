@@ -6,7 +6,13 @@ const DisplayCounter = () => {
    * with this hook we can get the value from store and that can be used in our component.
    */
   const counter = useSelector((store) => store.coutner);
-  return <p className="lead mb-4">Counter current value {counter}</p>;
+  const privacy = useSelector((store) => store.privacy);
+  return (
+    <>
+      {privacy && <p className="lead mb-4">Counter is currently private</p>}
+      {!privacy && <p className="lead mb-4">Counter current value {counter}</p>}
+    </>
+  );
 };
 
 export default DisplayCounter;
