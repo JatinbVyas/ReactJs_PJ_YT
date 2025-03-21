@@ -1,31 +1,33 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { counterSlices } from "../store/counter";
+import { privacySlices } from "../store/privacy";
 
 const Controlls = () => {
-  //useDispatch hook is used to displatch that action, this returns one dispatch method.
   const dispatch = useDispatch();
   const inputValue = useRef();
 
   const onIncrement = () => {
-    dispatch({ type: "INCREMENT" });
+    //Now in redux toolkit you no need to define action, just import action object and you directly access the method that is written in slice
+    dispatch(counterSlices.increment());
   };
 
   const onDecrement = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(counterSlices.decrement());
   };
 
   const onAddition = () => {
-    dispatch({ type: "ADD", payload: { number: inputValue.current.value } });
+    dispatch(counterSlices.addition({ number: inputValue.current.value }));
     inputValue.current.value = "";
   };
 
   const onSubstract = () => {
-    dispatch({ type: "SUB", payload: { number: inputValue.current.value } });
+    dispatch(counterSlices.subtraction(inputValue.current.value));
     inputValue.current.value = "";
   };
 
   const handlePrivacyToggle = () => {
-    dispatch({ type: "PRIVACY" });
+    dispatch(privacySlices.togglePrivacy());
   };
 
   return (
