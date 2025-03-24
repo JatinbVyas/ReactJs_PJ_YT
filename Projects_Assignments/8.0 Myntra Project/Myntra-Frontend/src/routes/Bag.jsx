@@ -1,8 +1,7 @@
-import FooterCP from "./components/FooterCP";
-import HeaderCP from "./components/HeaderCP";
-import HomeItemCP from "./components/HomeItemCP";
+import BagItem from "../components/BagItem";
+import BagSummary from "../components/BagSummary";
 
-function App() {
+const BagCP = () => {
   const item = {
     id: "001",
     image: "images/1.jpg",
@@ -20,15 +19,16 @@ function App() {
   };
   return (
     <>
-      <HeaderCP></HeaderCP>
       <main>
-        <div className="items-container">
-          <HomeItemCP item={item}></HomeItemCP>
+        <div className="bag-page">
+          <div className="bag-items-container">
+            <BagItem item={item}></BagItem>
+          </div>
+          <BagSummary></BagSummary>
         </div>
       </main>
-      <FooterCP></FooterCP>
     </>
   );
-}
+};
 
-export default App;
+export default BagCP;

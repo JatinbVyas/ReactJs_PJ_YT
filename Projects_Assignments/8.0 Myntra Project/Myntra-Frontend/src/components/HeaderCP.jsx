@@ -1,15 +1,19 @@
+import { IoMdPerson } from "react-icons/io";
+import { FaHeart } from "react-icons/fa";
+import { BsHandbagFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const HeaderCP = () => {
   return (
     <>
       <header>
         <div className="logo_container">
-          <a href="#">
+          <Link to="/">
             <img
               className="myntra_home"
               src="images/myntra_logo.webp"
               alt="Myntra Home"
             />
-          </a>
+          </Link>
         </div>
         <nav className="nav_bar">
           <a href="#">Men</a>
@@ -30,26 +34,20 @@ const HeaderCP = () => {
         </div>
         <div className="action_bar">
           <div className="action_container">
-            <span className="material-symbols-outlined action_icon">
-              person
-            </span>
+            <IoMdPerson />
             <span className="action_name">Profile</span>
           </div>
 
           <div className="action_container">
-            <span className="material-symbols-outlined action_icon">
-              favorite
-            </span>
+            <FaHeart />
             <span className="action_name">Wishlist</span>
           </div>
 
-          <a className="action_container" href="pages/bag.html">
-            <span className="material-symbols-outlined action_icon">
-              shopping_bag
-            </span>
+          <Link className="action_container" to="/bag">
+            <BsHandbagFill />
             <span className="action_name">Bag</span>
             <span className="bag-item-count">0</span>
-          </a>
+          </Link>
         </div>
       </header>
     </>
