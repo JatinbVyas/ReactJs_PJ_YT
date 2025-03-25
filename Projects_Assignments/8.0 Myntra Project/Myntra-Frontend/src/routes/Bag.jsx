@@ -1,6 +1,7 @@
 import BagItem from "../components/BagItem";
 import BagSummary from "../components/BagSummary";
 import { useSelector } from "react-redux";
+import EmptyBagMessage from "../components/EmptyBagMessage";
 
 const BagCP = () => {
   const bagItems = useSelector((store) => store.bag);
@@ -13,14 +14,18 @@ const BagCP = () => {
   return (
     <>
       <main>
-        <div className="bag-page">
-          <div className="bag-items-container">
-            {finalItems.map((item) => (
-              <BagItem item={item}></BagItem>
-            ))}
+        {bagItems.length <= 0 ? (
+          <EmptyBagMessage></EmptyBagMessage>
+        ) : (
+          <div className="bag-page">
+            <div className="bag-items-container">
+              {finalItems.map((item) => (
+                <BagItem item={item}></BagItem>
+              ))}
+            </div>
+            <BagSummary></BagSummary>
           </div>
-          <BagSummary></BagSummary>
-        </div>
+        )}
       </main>
     </>
   );
