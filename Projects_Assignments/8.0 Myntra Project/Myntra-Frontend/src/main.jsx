@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./routes/App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BagCP from "./routes/Bag.jsx";

@@ -1,10 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bagActions } from "../store/bagSlices";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 const HomeItemCP = ({ item }) => {
   const dispatch = useDispatch();
+  const bagObj = useSelector((store) => store.bag);
+  const itemIdFound = bagObj.indexOf(item.id) >= 0;
   const handleAddtoBag = () => {
     dispatch(bagActions.addToBag(item.id));
+  };
+
+  const handleRemovefromBag = () => {
+    dispatch(bagActions.removeFromBag(item.id));
   };
   return (
     <>
@@ -20,9 +28,23 @@ const HomeItemCP = ({ item }) => {
           <span className="original-price">Rs {item.original_price}</span>
           <span className="discount">({item.discount_percentage}% OFF)</span>
         </div>
-        <button className="btn-add-bag" onClick={handleAddtoBag}>
-          Add to Bag
-        </button>
+        {itemIdFound ? (
+          <button
+            type="button"
+            className="btn btn-add-bag btn-danger"
+            onClick={handleRemovefromBag}
+          >
+            <MdOutlineDeleteForever /> Remove from Bag
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-add-bag btn-success"
+            onClick={handleAddtoBag}
+          >
+            <IoMdAddCircleOutline /> Add to Bag
+          </button>
+        )}
       </div>
     </>
   );
