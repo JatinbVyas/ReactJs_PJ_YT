@@ -1,24 +1,37 @@
+import { useSelector } from "react-redux";
+
 const BagSummary = () => {
-  const bagSummaryObj = {
-    totalItem: 3,
-    totalMRP: 2500,
-    totalDiscount: 500,
-    finalPayment: 2000,
-  };
+  const bagSummaryObj = useSelector((store) => store.bag);
+  const items = useSelector((store) => store.item);
+  const finalItems = items.filter((item) => {
+    const itemInex = bagSummaryObj.indexOf(item.id);
+    return itemInex >= 0;
+  });
+
+  const CONVENIENCE_FEES = 99.0;
+  let totalMRP = 0;
+  let totalDiscount = 0;
+
+  finalItems.forEach((bagItem) => {
+    totalMRP += bagItem.original_price;
+    totalDiscount += bagItem.original_price - bagItem.current_price;
+  });
+
+  let finalPayment = totalMRP - totalDiscount + CONVENIENCE_FEES;
   return (
     <div className="bag-summary">
       <div className="bag-details-container">
         <div className="price-header">
-          PRICE DETAILS ({bagSummaryObj.totalItem} Items){" "}
+          PRICE DETAILS ({bagSummaryObj.length} Items){" "}
         </div>
         <div className="price-item">
           <span className="price-item-tag">Total MRP</span>
-          <span className="price-item-value">₹{bagSummaryObj.totalMRP}</span>
+          <span className="price-item-value">₹{totalMRP}</span>
         </div>
         <div className="price-item">
           <span className="price-item-tag">Discount on MRP</span>
           <span className="price-item-value priceDetail-base-discount">
-            -₹{bagSummaryObj.totalDiscount}
+            -₹{totalDiscount}
           </span>
         </div>
         <div className="price-item">
@@ -28,9 +41,7 @@ const BagSummary = () => {
         <hr />
         <div className="price-footer">
           <span className="price-item-tag">Total Amount</span>
-          <span className="price-item-value">
-            ₹{bagSummaryObj.finalPayment}
-          </span>
+          <span className="price-item-value">₹{finalPayment}</span>
         </div>
       </div>
       <button className="btn-place-order">
